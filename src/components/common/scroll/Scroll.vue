@@ -45,10 +45,13 @@ export default {
       click: true,
       mouseWheel: true,
       observeDOM: this.observeDOM,
+      // 等到页面图片加载完之后，刷新content高度
       observeImage: this.observeImage,
+      // 派发scroll事件
       probeType: this.probeType,
       pullUpLoad: this.pullUpLoad,
     });
+    console.log(this.scroll);
     // 监听滚动的位置
     if (this.probeType === 2 || this.probeType === 3) {
       this.scroll.on("scroll", (positon) => {
