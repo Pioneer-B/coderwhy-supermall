@@ -2,7 +2,7 @@
   <div>
     <tab-bar>
       <template #default>
-        <tab-bar-item path="/home">
+        <tab-bar-item path="/home" activeColor='blue'>
           <template #item-icon>
             <img src="@/assets/img/tabbar/home.svg" />
           </template>
@@ -56,4 +56,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>

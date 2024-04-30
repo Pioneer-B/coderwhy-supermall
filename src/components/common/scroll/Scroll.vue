@@ -51,7 +51,7 @@ export default {
       probeType: this.probeType,
       pullUpLoad: this.pullUpLoad,
     });
-    console.log(this.scroll);
+    // console.log(this.scroll);
     // 监听滚动的位置
     if (this.probeType === 2 || this.probeType === 3) {
       this.scroll.on("scroll", (positon) => {

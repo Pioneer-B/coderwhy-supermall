@@ -28,6 +28,7 @@ export default {
   },
   methods: {
     itemClick() {
+      console.log(this.goodsItem.iid);
       this.$router.push('/detail/' + this.goodsItem.iid)
     }
   }

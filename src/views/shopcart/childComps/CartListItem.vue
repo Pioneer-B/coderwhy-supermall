@@ -2,7 +2,7 @@
   <div id="shop-item">
     <div class="item-selector">
        <check-button :is-checked="itemInfo.checked" @click="checkClick"/>
-     </div>
+    </div>
     <div class="item-img">
       <img :src="itemInfo.img" alt="商品图片" />
     </div>
@@ -39,6 +39,7 @@ export default {
 </script>
 
 <style scoped>
+/* 最大盒子 */
 #shop-item {
   width: 100%;
   display: flex;
@@ -46,7 +47,7 @@ export default {
   padding: 5px;
   border-bottom: 1px solid #ccc;
 }
-
+/* 选择器 */
 .item-selector {
   width: 14%;
   display: flex;
@@ -54,13 +55,8 @@ export default {
   align-items: center;
 }
 
-.item-title,
-.item-desc {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
 
+/* 图片 */
 .item-img {
   padding: 5px;
   /*border: 1px solid #ccc;*/
@@ -71,7 +67,7 @@ export default {
   height: 100px;
   border-radius: 5px;
 }
-
+/* 其他 */
 .item-info {
   font-size: 17px;
   color: #333;
@@ -79,8 +75,14 @@ export default {
   position: relative;
   overflow: hidden;
 }
-
-.item-info .item-desc {
+/* 标题和文字 超出一行省略号显示 */
+.item-title,
+.item-desc {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.item-desc {
   font-size: 14px;
   color: #666;
   margin-top: 15px;

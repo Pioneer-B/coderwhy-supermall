@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
     <!-- 详情页顶部导航 -->
-    <detail-nav-bar class="detail-nav" @tabClick="tabClick" ref="nav" />
+    <detail-nav-bar class="detail-nav" @tabClick="tabClick" ref="nav"/>
     <!-- 滚动 -->
     <scroll
       class="content"
@@ -9,8 +9,7 @@
       :probe-type="3"
       :observeImage="true"
       :observeDOM="true"
-      @scroll="contentScroll"
-    >
+      @scroll="contentScroll" >
       <!-- 详情页轮播图 -->
       <detail-swiper :top-images="topImages" />
       <!-- 商品基本信息 -->
@@ -51,9 +50,9 @@ import DetailParamInfo from "./childComps/DetailParamInfo.vue";
 import DetailCommentInfo from "./childComps/DetailCommentInfo";
 import GoodsList from "../../components/content/goods/GoodsList.vue";
 import DetailNavBar from "./childComps/DetailNavBar.vue";
-import DetailBottomBar from "./childComps/DetailBottomBar.vue";
-import { backTopMixin } from "@/common/mixin";
-import Toast from "@/components/common/toast/Toast";
+import DetailBottomBar from './childComps/DetailBottomBar.vue';
+import {backTopMixin} from '@/common/mixin';
+import Toast from '@/components/common/toast/Toast'
 export default {
   name: "Detail",
   data() {
@@ -71,7 +70,7 @@ export default {
       currentIndex: 0,
       product: {},
       isShow: false,
-      message: "",
+      message: '',
       detail_nav: 0
     };
   },
@@ -87,16 +86,15 @@ export default {
     GoodsList,
     DetailNavBar,
     DetailBottomBar,
-    Toast
+    Toast,
   },
   created() {
     // 1.保存传入的iid
     this.iid = this.$route.params.iid;
     // 2.获取详情页数据
-    getDetail(this.iid).then(res => {
-      console.log(44, res);
-      const data = res.result || res.data.result;
-      console.log(data);
+    getDetail(this.iid).then((res) => {
+      const data = res.result;
+      // console.log(data);
       // 1.获取顶部的图片详情数据
       this.topImages = data.itemInfo.topImages;
       // 2.获取商品信息
@@ -120,26 +118,25 @@ export default {
       }
     });
     // 3.获取推荐数据
-    getRecommend().then(res => {
+    getRecommend().then((res) => {
       this.recommends = res.data.list;
     });
 
     this.$nextTick(() => {
       this.getThemeTopY = debounce(() => {
-        this.themeTopYs = [];
-        this.themeTopYs.push(0);
-        this.themeTopYs.push(this.$refs.params.$el.offsetTop - 44);
-        this.themeTopYs.push(this.$refs.comment.$el.offsetTop - 44);
-        this.themeTopYs.push(this.$refs.recommend.$el.offsetTop - 44);
-        this.themeTopYs.push(Number.MAX_VALUE); // 存入最大值，用于边界条件判断
-        console.log(this.themeTopYs);
-      }, 200);
-    });
+      this.themeTopYs = [];
+      this.themeTopYs.push(0);
+      this.themeTopYs.push(this.$refs.params.$el.offsetTop - 44);
+      this.themeTopYs.push(this.$refs.comment.$el.offsetTop - 44);
+      this.themeTopYs.push(this.$refs.recommend.$el.offsetTop - 44);
+      this.themeTopYs.push(Number.MAX_VALUE); // 存入最大值，用于边界条件判断
+      console.log(this.themeTopYs);
+    }, 200);
+    })
   },
   methods: {
     imageLoad() {
       this.$refs.scroll.refresh();
-      // console.log("------------------------");
       this.getThemeTopY();
     },
     tabClick(index) {
@@ -160,28 +157,28 @@ export default {
         }
       }
       // 2.确定BackTop是否显示
-      this.isBackShow = -position.y > 1000;
+      this.isBackShow = (-position.y) > 1000
     },
-    addToCart() {
-      this.product.iid = this.iid;
-      this.product.img = this.topImages[0];
-      this.product.title = this.goods.title;
-      this.product.desc = this.goods.desc;
-      this.product.newPrice = this.goods.realPrice;
-      console.log(this.product);
+    addToCart () {
+      this.product.iid = this.iid
+      console.log(this.iid);
+      this.product.img = this.topImages[0]
+      this.product.title = this.goods.title
+      this.product.desc = this.goods.desc
+      this.product.newPrice = this.goods.realPrice
       // 添加到购物车
-      this.$store.dispatch("addCart", this.product).then(res => {
+      this.$store.dispatch('addCart',this.product).then(res =>{
         console.log(res);
         this.message = res;
         this.isShow = true;
         setTimeout(() => {
           this.isShow = false;
-          this.message = "";
-        }, 1500);
-      });
+          this.message = '';
+        },1500)
+      })
       // console.log(this.$store.state.cartList);
     }
-  }
+  },
 };
 </script>
 

@@ -3,6 +3,7 @@
     <scroll class="content"
             :probeType="3"
             ref="scroll">
+
       <cart-list-item v-for="(item, index) in cartList" :key="index" :item-info="item" />
     </scroll>
   </div>

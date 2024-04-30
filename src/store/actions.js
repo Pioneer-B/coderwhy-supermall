@@ -4,10 +4,7 @@ import {
 } from "./mutation-types";
 
 export default {
-  addCart({
-    state,
-    commit
-  }, payload) {
+  addCart({state, commit}, payload) {
     return new Promise((resolve) => {
         // 1.查找之前数组中是否有该数组
         let oldProduct = state.cartList.find(item => item.iid === payload.iid)

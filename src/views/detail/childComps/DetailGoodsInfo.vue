@@ -68,15 +68,16 @@ export default {
   height: 1px;
   background-color: #a3a3a5;
   position: relative;
+  
 }
 
-.info-desc .start {
+  .info-desc .start {
   float: left;
 }
 
 .info-desc .end {
   float: right;
-}
+}  
 
 .info-desc .start::before,
 .info-desc .end::after {

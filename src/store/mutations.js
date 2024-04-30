@@ -12,6 +12,7 @@ export default {
     state.cartList.push(payload)
   },
   [CHECK_CLICK] (state, payload) {
+    console.log(payload);
     let product = state.cartList.find(item => item.iid === payload)
     product.checked = !product.checked
   }

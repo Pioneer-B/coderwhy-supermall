@@ -1,45 +1,45 @@
 <template>
   <div class="bottom-bar">
     <div class="check-content">
-      <check-button class="check-button" :is-checked="isSelectAll"
-                    @click="checkClick" />
+      <check-button
+        class="check-button"
+        :is-checked="isSelectAll"
+        @click="checkClick"
+      />
       <span>全选</span>
     </div>
-    <div class="price">
-      合计: {{totalPrice}}
-    </div>
-    <div class="right" @click="cartBuy">
-      去结算({{totalCount}})
-    </div>
+    <div class="price">合计: {{ totalPrice }}</div>
+    <div class="right" @click="cartBuy">去结算({{ totalCount }})</div>
   </div>
 </template>
 
 <script>
 import CheckButton from "../../../components/content/checkButton/CheckButton.vue";
-import {mapGetters} from "vuex"
+import { mapGetters } from "vuex";
 export default {
   components: { CheckButton },
   name: "CartBottomBar",
   computed: {
-    ...mapGetters(['totalPrice', 'totalCount', 'cartList']),
-    isSelectAll () {
-      if (this.cartList.length === 0) return false
-      return this.cartList.every(item => item.checked)
-    }
+    ...mapGetters(["totalPrice", "totalCount", "cartList"]),
+    isSelectAll() {
+      if (this.cartList.length === 0) return false;
+      return this.cartList.every((item) => item.checked);
+    },
   },
   methods: {
     checkClick() {
-      // if (this.isSelectAll) {
-      //   this.cartList.forEach(item => item.checked = false)
-      // } else {
-      //   this.cartList.forEach(item => item.checked = true)
-      // }
-      this.cartList.forEach(item => item.checked = !this.isSelectAll)
+       if (this.isSelectAll) {
+         this.cartList.forEach(item => item.checked = false)
+       } else {
+         this.cartList.forEach(item => item.checked = true)
+       }
+       this.cartList.forEach(item => item.checked = !this.isSelectAll)
+      console.log("---");
     },
     cartBuy() {
-      this.$emit("cartBuy")
-    }
-  }
+      this.$emit("cartBuy");
+    },
+  },
 };
 </script>
 

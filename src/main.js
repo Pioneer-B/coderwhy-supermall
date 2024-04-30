@@ -5,6 +5,7 @@ import store from './store'
 import FastClick from 'fastclick'
 import VueLazyLoad from 'vue3-lazyload'
 
+
 FastClick.attach(document.body)
 
 createApp(App).use(router).use(store).use(VueLazyLoad, {
